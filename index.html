@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2026 大阪家族旅行 🌸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff9a9e; /* 櫻花粉 */
+            --secondary-color: #fecfef;
+            --bg-color: #fffdf9; /* 溫暖底色 */
+            --text-main: #333333;
+            --text-muted: #666666;
+            --card-bg: #ffffff;
+            --accent-color: #74ebd5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 80px; /* 留給底部導覽列的空間 */
+        }
+
+        /* 頂部主視覺與倒數 */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .hero h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .countdown {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            display: inline-block;
+            backdrop-filter: blur(5px);
+        }
+
+        /* 內容區塊隱藏/顯示 */
+        .section-content {
+            display: none;
+            padding: 20px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 每日行程切換按鈕 */
+        .day-tabs {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding: 10px 0;
+            margin-bottom: 15px;
+            scrollbar-width: none; /* Firefox */
+        }
+        .day-tabs::-webkit-scrollbar { display: none; }
+
+        .day-btn {
+            flex: 0 0 auto;
+            padding: 10px 20px;
+            background: #eee;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .day-btn.active {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 2px 8px rgba(255, 154, 158, 0.4);
+        }
+
+        /* 時間軸設計 */
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--secondary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 15px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 3px solid var(--bg-color);
+        }
+
+        .time {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .detail {
+            font-size: 14px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+        
+        .detail i {
+            margin-top: 4px;
+            color: #aaa;
+        }
+
+        .note {
+            background: #fff8f8;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #d63384;
+            margin-top: 10px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        /* 卡片設計 (航班、住宿、須知) */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .card h2 {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3 {
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        .card ul li::before {
+            content: '✿';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 12px;
+            top: 2px;
+        }
+
+        .highlight-box {
+            background: #fff3cd;
+            border: 1px solid #ffe69c;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #664d03;
+        }
+
+        /* 底部導覽列 */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            padding-bottom: env(safe-area-inset-bottom, 10px); /* 適配 iPhone 底部 */
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            text-align: center;
+            color: #ccc;
+            text-decoration: none;
+            flex: 1;
+            padding: 5px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-item i {
+            font-size: 22px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .nav-item span {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .nav-item.active {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>2026 大阪家族旅行 🌸</h1>
+        <p>3/18 (三) - 3/22 (日) 共五天四夜</p>
+        <div class="countdown" id="countdown-timer">
+            距離出發還有計算中...
+        </div>
+    </header>
+
+    <section id="tab-schedule" class="section-content active">
+        <div class="day-tabs">
+            <button class="day-btn active" onclick="switchDay('day1')">3/18 第一天</button>
+            <button class="day-btn" onclick="switchDay('day2')">3/19 第二天</button>
+            <button class="day-btn" onclick="switchDay('day3')">3/20 第三天</button>
+            <button class="day-btn" onclick="switchDay('day4')">3/21 第四天</button>
+            <button class="day-btn" onclick="switchDay('day5')">3/22 第五天</button>
+        </div>
+
+        <div id="day1" class="timeline day-content">
+            <div class="timeline-item">
+                <div class="time">14:00</div>
+                <div class="title">抵達關西機場</div>
+                <div class="detail"><i class="fa-solid fa-train"></i> 交通：搭乘南海電鐵到難波 (¥240)</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">16:00</div>
+                <div class="title">住宿 Check-in 整理行李</div>
+                <div class="detail"><i class="fa-solid fa-house"></i> BON公寓難波日本橋</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">16:30</div>
+                <div class="title">道頓堀逛逛</div>
+                <div class="detail"><i class="fa-solid fa-person-walking"></i> 步行約 10 分鐘</div>
+                <div class="note">跑跑固力果拍照、吃小吃(章魚燒)</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">17:30</div>
+                <div class="title">晚餐時間</div>
+                <div class="note">選擇：北極星蛋包飯 / 找拉麵店 / 炸牛排 京都勝牛</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">20:00</div>
+                <div class="title">Super Tamade 玉出超市 (日本橋店)</div>
+                <div class="detail"><i class="fa-solid fa-cart-shopping"></i> 步行約 17 分鐘</div>
+                <div class="note">晚上8-9點後熟食貼折扣貼紙(-20%~-50%)。買宵夜、明天早餐。<br>注意：不能拍照，帶現金，自備購物袋。</div>
+            </div>
+        </div>
+
+        <div id="day2" class="timeline day-content" style="display:none;">
+            <div class="timeline-item">
+                <div class="time">08:00</div>
+                <div class="title">出門準備</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">全天</div>
+                <div class="title">KKDAY 京都一日遊</div>
+                <div class="note">勝尾寺祈願・金閣寺巡禮・嵐山美景遊</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">晚上</div>
+                <div class="title">晚餐：拉麵選擇</div>
+                <div class="note">
+                    1. 鶏白湯ラーメン 麺はともあれ (清爽雞白湯)<br>
+                    2. Ramen Tendo (黑門市場旁，湯頭溫和)<br>
+                    3. Ramen Hayashida (道頓堀，適合家庭)<br>
+                    4. Kyushu Ramen Kio (道頓堀，口味平衡)
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">餐後</div>
+                <div class="title">法善寺散步</div>
+                <div class="detail"><i class="fa-solid fa-moon"></i> 適合晚上散步，結束後回 BON公寓</div>
+            </div>
+        </div>
+
+        <div id="day3" class="timeline day-content" style="display:none;">
+            <div class="timeline-item">
+                <div class="time">08:30</div>
+                <div class="title">出門前往神戶</div>
+                <div class="detail"><i class="fa-solid fa-train"></i> 使用 JR Pass 坐到大阪車站</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">09:30 - 10:30</div>
+                <div class="title">生田神社</div>
+                <div class="detail"><i class="fa-solid fa-torii-gate"></i> JR三宮站步行8分</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">10:30 - 11:30</div>
+                <div class="title">北野異人館</div>
+                <div class="note">風見雞之館+萌黃之館(¥650)、萊茵館(免費)</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">中午</div>
+                <div class="title">午餐：神戶牛</div>
+                <div class="note">Steak land (需排隊) 或 彩 (較高檔，12:00待定位)</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">14:00 - 16:00</div>
+                <div class="title">姬路城</div>
+                <div class="detail"><i class="fa-solid fa-train"></i> 13:00出發，JR三宮->JR姬路</div>
+                <div class="note">門票 ¥2500 (現場買)</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">16:00 - 17:00</div>
+                <div class="title">家老屋敷商店街</div>
+                <div class="note">買伴手禮：雞蛋糕、麻花捲、千年杉年輪蛋糕、清酒</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">17:00 - 18:00</div>
+                <div class="title">點心：姫路TACOPY 明石燒</div>
+                <div class="detail"><i class="fa-solid fa-utensils"></i> JR姬路地下街(B1) 販賣機點餐</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">19:30 - 20:30</div>
+                <div class="title">晚餐：梅田 Godaigo 關東煮</div>
+                <div class="detail"><i class="fa-solid fa-train"></i> JR姬路返回大阪</div>
+            </div>
+        </div>
+
+        <div id="day4" class="timeline day-content" style="display:none;">
+            <div class="timeline-item">
+                <div class="time">08:20 - 09:30</div>
+                <div class="title">黑門市場吃早餐</div>
+                <div class="note">石橋關東煮、黑門三平生魚片、草莓大福、高橋豆漿</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">10:00 - 10:40</div>
+                <div class="title">難波八阪神社</div>
+                <div class="detail"><i class="fa-solid fa-camera"></i> 拍照停留，有長椅可坐</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">11:00 - 12:30</div>
+                <div class="title">午餐：CHIBO 大丸心齋橋店</div>
+                <div class="detail"><i class="fa-solid fa-train"></i> 御堂筋線至心齋橋站</div>
+                <div class="note">11:15 已訂位 (備案: 鉄板 お好み焼き 美月)</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">12:30 - 15:30</div>
+                <div class="title">心齋橋逛街買藥妝</div>
+                <div class="note">一路往道頓堀走，買爆後先回民宿放戰利品休息</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">16:00 - 17:30</div>
+                <div class="title">難波公園 (Namba Parks)</div>
+                <div class="detail"><i class="fa-solid fa-leaf"></i> 階梯狀屋頂花園</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">18:00 - 19:00</div>
+                <div class="title">通天閣 (新世界)</div>
+                <div class="note">體驗巨型溜滑梯、摩天輪。必吃：達摩串炸、土手燒(味噌牛筋)</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">19:00</div>
+                <div class="title">超商或超市採買</div>
+                <div class="note">推薦 LIFE中央廣場 難波店，買熟食回民宿當晚餐</div>
+            </div>
+        </div>
+
+        <div id="day5" class="timeline day-content" style="display:none;">
+            <div class="timeline-item">
+                <div class="time">08:00</div>
+                <div class="title">起床退房</div>
+                <div class="note">確認行李是否都收好了！</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">09:00</div>
+                <div class="title">前往關西機場</div>
+                <div class="detail"><i class="fa-solid fa-train"></i> 搭乘南海電鐵返回機場</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">10:30</div>
+                <div class="title">機場報到與掛行李</div>
+                <div class="note">預留時間逛免稅店買伴手禮</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">12:45</div>
+                <div class="title">搭機返台</div>
+                <div class="detail"><i class="fa-solid fa-plane"></i> 中華航空 CI153，預計 15:00 抵達台灣</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tab-info" class="section-content">
+        <div class="card">
+            <h2><i class="fa-solid fa-plane-departure"></i> 航班資訊</h2>
+            <h3>去程：3/18 (三)</h3>
+            <ul>
+                <li>航空公司：Peach 樂桃航空</li>
+                <li>時間：09:40 桃園 (TPE) 出發 ➔ 13:10 關西 (KIX) 抵達</li>
+            </ul>
+            <h3>回程：3/22 (日)</h3>
+            <ul>
+                <li>航空公司：中華航空</li>
+                <li>時間：12:45 關西 (KIX) 出發 ➔ 15:00 桃園 (TPE) 抵達</li>
+            </ul>
+            <div class="note">回程是華航，行李空間較充裕，不怕超重也較舒適！</div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fa-solid fa-bed"></i> 住宿資訊</h2>
+            <h3>BON公寓難波日本橋</h3>
+            <ul>
+                <li>地址：1-8-17, Nipponbashi, Chuo-ku, Namba, Osaka</li>
+                <li>交通：日本橋站 6 號出口步行 3-5 分鐘</li>
+                <li>優點：空間寬敞(可開多個大行李箱)、微波爐大冰箱洗衣機齊全、衛浴分離。</li>
+                <li>環境：巷口對面就是黑門市場，離道頓堀/心齋橋步行10分內。</li>
+                <li>入住：自助 Check-in (請準備好入住憑證與密碼)</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="tab-prep" class="section-content">
+        <div class="card">
+            <h2><i class="fa-solid fa-cloud-sun"></i> 當地氣候與穿搭建議</h2>
+            <p>3 月中下旬的大阪正值初春，氣溫約在 <strong>5°C 到 15°C</strong> 之間。早晚溫差非常大，室內及電車內通常會開暖氣。</p>
+                        <h3>👕 穿搭守則：洋蔥式穿搭</h3>
+            <ul>
+                <li><strong>內層：</strong>透氣的長袖棉T或薄發熱衣。</li>
+                <li><strong>中層：</strong>方便穿脫的毛衣、針織衫或厚帽T。</li>
+                <li><strong>外層：</strong>防風防寒的大衣或輕便羽絨外套（進室內方便脫下）。</li>
+                <li><strong>配件：</strong>怕冷的家人可攜帶輕便圍巾與帽子，走一整天路務必穿好走的球鞋！</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2><i class="fa-solid fa-suitcase-rolling"></i> 搭機行李注意事項 (新手必看)</h2>
+            <p>為了確保通關順利，請家人們在整理行李時務必遵守以下規定：</p>
+                        <div class="highlight-box">
+                <strong>🚫 絕對不可放入【托運行李】（必須帶上飛機）：</strong><br>
+                行動電源、備用鋰電池、打火機（限一個）、電子菸。
+            </div>
+            <h3>🎒 隨身包包（帶上飛機）規定</h3>
+            <ul>
+                <li><strong>護照、錢包、手機：</strong>絕對要隨身帶好！</li>
+                <li><strong>液體限制：</strong>單瓶液體/膏狀物(如護手霜、乳液)<strong>不得超過 100ml</strong>。所有液體瓶罐必須裝在一個「1公升以內、可重複密封的透明夾鏈袋」中。</li>
+                <li>水壺請在過安檢前把水倒光，過完安檢再裝水。</li>
+            </ul>
+            <h3>🧳 大行李箱（托運）規定</h3>
+            <ul>
+                <li>超過 100ml 的液體（如大罐化妝水、洗髮精）必須托運。</li>
+                <li>剪刀、指甲剪、瑞士刀等刀具類必須托運。</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2><i class="fa-solid fa-circle-exclamation"></i> 日本旅遊禮儀與注意事項</h2>
+            <ul>
+                <li><strong>手扶梯靠邊：</strong>在大阪，搭乘手扶梯時習慣<strong>靠右站立</strong>，左側讓給趕時間的人通行（與東京靠左不同喔）。</li>
+                <li><strong>電車內保持安靜：</strong>日本電車內禁止講電話，且盡量降低交談音量。</li>
+                <li><strong>邊走邊吃：</strong>日本不習慣邊走邊吃（除了少數祭典或特定商店街）。在黑門市場或道頓堀買了小吃，請在店家門口或指定區域吃完再丟垃圾。</li>
+                <li><strong>免稅規定 (Tax Free)：</strong>在有免稅標誌的商店，單日單店消費滿 5,000 日圓（未稅）即可辦理退稅，結帳時請務必出示<strong>實體護照</strong>。</li>
+            </ul>
+        </div>
+    </section>
+
+    <nav class="bottom-nav">
+        <a class="nav-item active" onclick="switchMainTab('tab-schedule', this)">
+            <i class="fa-regular fa-calendar-days"></i>
+            <span>每日行程</span>
+        </a>
+        <a class="nav-item" onclick="switchMainTab('tab-info', this)">
+            <i class="fa-solid fa-plane"></i>
+            <span>航班住宿</span>
+        </a>
+        <a class="nav-item" onclick="switchMainTab('tab-prep', this)">
+            <i class="fa-solid fa-suitcase"></i>
+            <span>行前準備</span>
+        </a>
+    </nav>
+
+    <script>
+        // 倒數計時器邏輯 (設定為 2026/03/18)
+        const tripDate = new Date('2026-03-18T00:00:00').getTime();
+        
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = tripDate - now;
+            
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown-timer").innerHTML = "旅途愉快！出發囉！✈️";
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            
+            document.getElementById("countdown-timer").innerHTML = `距離出發還有 ${days} 天 ${hours} 小時`;
+        }, 1000);
+
+        // 每日行程的 Day 1 ~ Day 5 切換
+        function switchDay(dayId) {
+            // 隱藏所有 day-content
+            document.querySelectorAll('.day-content').forEach(el => {
+                el.style.display = 'none';
+            });
+            // 顯示目標 day-content
+            document.getElementById(dayId).style.display = 'block';
+            
+            // 更新按鈕 active 狀態
+            document.querySelectorAll('.day-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // 底部三大主導覽列切換
+        function switchMainTab(tabId, element) {
+            // 隱藏所有主區塊
+            document.querySelectorAll('.section-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            // 顯示目標區塊
+            document.getElementById(tabId).classList.add('active');
+            
+            // 更新底部導覽列 active 狀態
+            document.querySelectorAll('.nav-item').forEach(nav => {
+                nav.classList.remove('active');
+            });
+            element.classList.add('active');
+            
+            // 回到頂部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
