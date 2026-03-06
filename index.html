@@ -32,11 +32,17 @@
         }
 
         /* 頂部主視覺與倒數 */
-        .hero {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+       .hero {
+           
+            /* 更新：背景替換為新生成的吉普力風格現代大阪插畫 */
+            background: linear-gradient(135deg, rgba(254, 207, 239, 0.6) 0%, rgba(255, 154, 158, 0.7) 100%), 
+                     url('images/image_1.png'); /* 請確認圖片檔案就在 HTML 旁邊 */
+            background-size: cover;
+            background-position: center;
+            background-color: #ff9a9e; /* 如果圖片載入失敗，會顯示這個粉色底 */
             color: white;
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -161,6 +167,12 @@
             margin-bottom: 8px;
         }
 
+        .title i{
+            margin: 4px 4px 0 0 ;
+        }
+
+
+
         .detail {
             font-size: 14px;
             color: var(--text-muted);
@@ -170,9 +182,9 @@
             margin-bottom: 5px;
         }
         
-        .detail i {
-            margin-top: 4px;
+        .detail i {      
             color: #aaa;
+            margin: 4px 4px 0 0 ;
         }
 
         .note {
@@ -210,6 +222,14 @@
             color: var(--text-main);
         }
 
+        .card h4 {
+            color: #066D72;
+            font-size: 14px;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
         .card ul {
             list-style: none;
         }
@@ -239,6 +259,44 @@
             margin-top: 15px;
             font-weight: bold;
             color: #664d03;
+        }
+
+        /* 換算器樣式 */
+        .converter-group {
+            margin-bottom: 15px;
+        }
+        .converter-group label {
+            display: block;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .converter-input-wrapper {
+            display: flex;
+            align-items: center;
+            background: #f9f9f9;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            padding: 10px 15px;
+            transition: border-color 0.3s;
+        }
+        .converter-input-wrapper:focus-within {
+            border-color: var(--primary-color);
+        }
+        .converter-input-wrapper input {
+            border: none;
+            background: transparent;
+            width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--text-main);
+            outline: none;
+        }
+        .converter-unit {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-left: 10px;
         }
 
         /* 底部導覽列 */
@@ -301,39 +359,62 @@
             <button class="day-btn" onclick="switchDay('day5')">3/22 第五天</button>
         </div>
 
+
         <div id="day1" class="timeline day-content">
             <div class="timeline-item">
                 <div class="time">14:00</div>
                 <div class="title">抵達關西機場</div>
-                <div class="detail"><i class="fa-solid fa-train"></i> 交通：搭乘南海電鐵到難波 (¥240)</div>
+                <div class="detail"><i class="fa-solid fa-train"></i> 交通：搭乘南海電鐵「特急 Rapi:t」或「機場急行」</div>
+                <div class="note">
+                    <ul>
+                        <li> 1. 購買 ICOCA 卡</li>
+                        <li>  2. 兌換神戶用 JR PASS</li>
+                        <li> 3. 抵達「南海難波站」後，請跟隨指標往 「北出口 (North Exit)」 方向。利用電梯下到 1 樓，出站後往 「難波地下街 (Namba Walk)」 走。沿著地下街往「日本橋站」方向前行（這段地下街全平路，拖行李很方便）。最重要： 尋找 「B15 出口」或「E9 出口」。B15 出口 有電梯可以直達地面。E9 出口 則非常靠近民宿（大約走 2 分鐘）</li>
+                    </ul>
+               </div>
             </div>
             <div class="timeline-item">
                 <div class="time">16:00</div>
-                <div class="title">住宿 Check-in 整理行李</div>
-                <div class="detail"><i class="fa-solid fa-house"></i> BON公寓難波日本橋</div>
+                <div class="title">住宿 Check-in (BON 公寓)</div>
+                <div class="detail">整理行李、洗把臉準備出發。</div>
+                <div class="note">
+                    1.入住前:大門進入密碼： 用來打開公寓 1 樓大門。入住碼 (Check-in Code)： 這是一串數字，不是 Agoda 的訂單編號。
+                    2.當天辦理入住步驟（進入大樓： 在 1 樓大門輸入郵件裡的密碼進入。操作平板： 櫃檯位置會放有幾台 平板電腦。輸入資訊： 輸入郵件中的「入住碼」。掃描護照： 根據指示，將 5 位入住大人的護照一一放在平板鏡頭前掃描（這是日本法律規定，一定要做）。領取房間密碼： 手續完成後，平板螢幕會顯示你的 「房間號碼」 與 「房間電子鎖密碼」。<br>
+                    <i class="fa-solid fa-circle-exclamation"></i>💡 強烈建議： 用手機把這組號碼拍下來，全家人都要存一份，避免忘記。
+                </div>
             </div>
             <div class="timeline-item">
                 <div class="time">16:30</div>
                 <div class="title">道頓堀逛逛</div>
-                <div class="detail"><i class="fa-solid fa-person-walking"></i> 步行約 10 分鐘</div>
-                <div class="note">跑跑固力果拍照、吃小吃(章魚燒)</div>
+                <div class="detail"><i class="fa-solid fa-camera"></i> 步行約 10 分鐘</div>
+                <div class="note">跑跑固力果拍照、吃章魚燒小吃。</div>
             </div>
-              
             <div class="timeline-item">
-                <div class="time">17:00</div>
-                <div class="title">晚餐時間  北極星蛋包飯</div>
-                 <div class="detail">
-                    <a href="https://bobbyfun.tw/2023-04-05-2292/" target="_blink"><i class="fa-solid fa-utensils"></i> 食記</a>
+                <div class="time">17:30</div>
+                <div class="title">晚餐時間 (3選1)</div>
+                <div class="detail">
+                    <ul>
+                        <li>北極星蛋包飯</li>
+                         <li><a href="https://share.google/SahSSklICYsjfNudj" target="_blink">拉麵 Hayashida (らぁ麺 はやし田 道頓堀店)</a></li>
+                        <li>神座拉麵 (Kamukura Ramen) — 清爽系白菜湯頭</li>
+                    </ul>
+                   
                 </div>
-                <div class="note">晚餐 - 北極星蛋包飯/章魚八道頓休總本店</div>
+                <div class="note">
+                    <h4>北極星蛋包飯:</h4>
+                    <h4>拉麵 Hayashida (らぁ麺 はやし田 道頓堀店):</h4>這間店就在道頓堀最熱鬧的區域（靠近格力高廣告牌），位於地下一樓。雖然它是東京來的名店，但其「高質感」的路線非常符合不喜歡死鹹口味的觀光客。<br>
+                    必點推薦：雖然最有名的是醬油拉麵，但他們的雞肉基底湯頭非常細緻，使用全雞與鴨肉熬煮，油脂清香而不膩。
+                    <h4>神座拉麵:</h4>這家拉麵被譽為「關西第一名」，湯頭與一般濃郁的豚骨不同，主打清甜的蔬菜醬油基底。<br>
+                    必點推薦：叉燒溏心蛋拉麵： 湯頭加入大量大白菜，口感像蔬菜湯一樣甘甜好喝，非常適合不喜歡太重鹹的旅人<br>
+                </div>
             </div>
-            <div class="timeline-item">
-                <div class="time">18:30</div>
+              <div class="timeline-item">
+                <div class="time">18:50</div>
                 <div class="title">Le Croissant Shinsaibashi心齋橋小可頌</div>
-                <div class="detail"><i class="fa-solid fa-bread-slice"></i> Le Croissant Shinsaibashi, 2 Chome-7-25 Shinsaibashisuji, Chuo Ward, Osaka, 542-0085日本  20:30關門</div>
-                <div class="note">好吃的可頌可當明日早餐</div>
+                <div class="detail"><i class="fa-solid fa-bread-slice"></i> Le Croissant Shinsaibashi, 2 Chome-7-25 Shinsaibashisuji, Chuo Ward, Osaka, 542-0085日本   </div>
+                <div class="note">20:30關門  好吃的可頌可當明日早餐</div>
             </div>
-            <div class="timeline-item">
+           <div class="timeline-item">
                 <div class="time">19:00</div>
                 <div class="title">Super Tamade 玉出超市 (日本橋店)</div>
                 <div class="detail"><i class="fa-solid fa-basket-shopping"></i> 步行約 17 分鐘</div>
@@ -344,8 +425,9 @@
                 <div class="title">回到住宿</div>
                 <div class="detail"><i class="fa-solid fa-house"></i> BON公寓難波日本橋</div>
             </div>
-
         </div>
+
+       
 
         <div id="day2" class="timeline day-content" style="display:none;">
            
@@ -379,45 +461,45 @@
             </div>
              <div class="timeline-item">
                 <div class="time">13:00</div>
-                <div class="title">嵐山午餐 蕎麥麵 嵐山よしむら</div>
+                <div class="title"><i class="fa-solid fa-utensils"></i>推薦嵐山午餐 蕎麥麵 嵐山よしむら</div>
                  <div class="detail">
-                    <a href="https://www.google.com.tw/maps/place/%E8%95%8E%E9%BA%A5%E9%BA%B5+%E5%B5%90%E5%B1%B1%E3%82%88%E3%81%97%E3%82%80%E3%82%89/@35.0136518,135.6746896,17z/data=!4m6!3m5!1s0x600107555ed5094b:0xcf5b6bb013ea38b9!8m2!3d35.0136474!4d135.6772645!16s%2Fg%2F1tfydgkh?entry=tts&g_ep=EgoyMDI2MDIyNS4wIPu8ASoASAFQAw%3D%3D&skid=567f2f5b-aa5f-4530-a7c5-c5f7c1bee07f" target="_blink"><i class="fa-solid fa-location-dot"></i>位置</a>
-                </div>
-                <div class="note">
-                   食記
+                    <div><a href="https://gototravel.tw/soba-restaurant-arashiyama-yoshimura/" target="_blink">蕎麥麵 嵐山よしむら</a></div>
                 </div>
             </div>
+
              <div class="timeline-item">
                 <div class="time">16:15</div>
                 <div class="title">金閣寺</div>
                 <div class="detail">（停留約40分鐘，入場票自理）</div>
                 <div class="note"> </div>
             </div>
+
              <div class="timeline-item">
                 <div class="time">18:30</div>
                 <div class="title">一日團散會  </div>
                 <div class="detail">回到大阪近鐵日本橋站</div>
                 <div class="note"> </div>
             </div>
+
             <div class="timeline-item">
                 <div class="time">晚上</div>
-                <div class="title">晚餐：拉麵 Hayashida (らぁ麺 はやし田 道頓堀店)</div>
-                 <div class="detail"> <a href="" target="_blink"><i class="fa-solid fa-utensils"></i> 食記</a></div>
-                <div class="note">
+                <div class="title"><i class="fa-solid fa-utensils"></i>晚餐:大阪燒 2選1</div>
+                 <div class="detail"> 
+                    <ul>
+                        <li><a href="https://lingling.blog/2019-11-09-294/" target="_blink">【千房大阪燒 CHIBO】Teppan Okonomiyaki Mitsuki</a></li>
+                        <li><a href="https://mimigo.tw/fukutarou/" target="_blink">福太郎大阪燒</a></li>                   
+                    </ul>   
+                </div>      
                 
-                   這間店就在道頓堀最熱鬧的區域（靠近格力高廣告牌），位於地下一樓。雖然它是東京來的名店，但其「高質感」的路線非常符合不喜歡死鹹口味的觀光客。
-                    口感： 雖然最有名的是醬油拉麵，但他們的雞肉基底湯頭非常細緻，使用全雞與鴨肉熬煮，油脂清香而不膩。
-                    特點： 裝潢非常新穎乾淨，點餐機有中文介面，對觀光客極度友善。
-                     <a href=""></i>地點： 大阪市中央區道頓堀1-10-1 B1F</a>
-                     地 
-                </div>
             </div>
+
             <div class="timeline-item">
                 <div class="time">餐後</div>
                 <div class="title">法善寺散步</div>
                 <div class="detail"><i class="fa-solid fa-moon"></i> 適合晚上散步，結束後回 BON公寓</div>
             </div>
         </div>
+
 
         <div id="day3" class="timeline day-content" style="display:none;">
             <div class="timeline-item">
@@ -437,7 +519,7 @@
             </div>
             <div class="timeline-item">
                 <div class="time">中午</div>
-                <div class="title">午餐：神戶牛</div>
+                <div class="title"><i class="fa-solid fa-utensils"></i>午餐：神戶牛</div>
                 <div class="note">Steak land (需排隊) 或 彩 (較高檔，12:00待定位)</div>
             </div>
             <div class="timeline-item">
@@ -454,11 +536,14 @@
             <div class="timeline-item">
                 <div class="time">17:00 - 18:00</div>
                 <div class="title">點心：姫路TACOPY 明石燒</div>
-                <div class="detail"><i class="fa-solid fa-utensils"></i> JR姬路地下街(B1) 販賣機點餐</div>
+                <div class="detail">
+                    <i class="fa-solid fa-cheese"></i><a href="https://irenelife.com/blog/post/truffle-donut" target="_blink">TRUFFLE DONUT甜甜圈柔軟不甜膩，姫路駅前店限定口味，奶油超爆餡</a>
+                    <i class="fa-solid fa-cheese"></i>JR姬路地下街(B1) 販賣機點餐
+                </div>
             </div>
             <div class="timeline-item">
                 <div class="time">19:30 - 20:30</div>
-                <div class="title">晚餐：梅田 Godaigo 關東煮</div>
+                <div class="title"><i class="fa-solid fa-utensils"></i>晚餐：梅田 Godaigo 關東煮</div>
                 <div class="detail"><i class="fa-solid fa-train"></i> JR姬路返回大阪</div>
             </div>
         </div>
@@ -476,30 +561,57 @@
             </div>
             <div class="timeline-item">
                 <div class="time">11:00 - 12:30</div>
-                <div class="title">午餐：CHIBO 大丸心齋橋店</div>
-                <div class="detail"><i class="fa-solid fa-train"></i> 御堂筋線至心齋橋站</div>
-                <div class="note">11:15 已訂位 (備案: 鉄板 お好み焼き 美月)</div>
+                <div class="title">Shake Shack 大丸心齋橋店</div>
+                <div class="detail">
+                    日本才有的速食店 聽說素食漢堡很好吃<a href="https://tenjo.tw/shakeshack/" target="_blink">連結</a>
+                    <i class="fa-solid fa-train"></i> 御堂筋線至心齋橋站
+                </div>
+                <div class="note">或是<h4>神座拉麵 (Kamukura Ramen) — 清爽系白菜湯頭</h4></div>
             </div>
             <div class="timeline-item">
                 <div class="time">12:30 - 15:30</div>
-                <div class="title">心齋橋逛街買藥妝</div>
+                <div class="title">心齋橋逛街買藥妝/扭蛋森林</div>
                 <div class="note">一路往道頓堀走，買爆後先回民宿放戰利品休息</div>
             </div>
             <div class="timeline-item">
-                <div class="time">16:00 - 17:30</div>
+                <div class="time">16:00 - 17:20</div>
                 <div class="title">難波公園 (Namba Parks)</div>
-                <div class="detail"><i class="fa-solid fa-leaf"></i> 階梯狀屋頂花園</div>
+                <div class="detail"><i class="fa-solid fa-leaf"></i> 階梯狀屋頂花園 免門票</div>
             </div>
             <div class="timeline-item">
-                <div class="time">18:00 - 19:00</div>
+                <div class="time">17:45</div>
+                <div class="title">晚餐:燒肉力丸_千日前店 (已訂位)</div>
+                <div class="detail">
+                     <i class="fa-solid fa-utensils">燒肉吃到飽</i>  
+                </div>
+                <div class="note">
+                  90分鐘 標準:約800元(一人)<br>
+                  【スタンダード食べ放題／全82品】標準方案3828yen。<br>
+                  【プレミアム食べ放題／全110品】高級方案4488yen。多了鹽味牛舌，招牌名物四種拼盤可以點。<br>
+                  【道頓堀食べ放題／全120品】道頓堀方案5808yen。有黑毛和牛，炙燒牛肉壽司，牛舌排。<br>
+                    有大蝦/貝類/魷魚/冷麵/拌飯<br>
+                   <i class="fa-solid fa-wallet">旅遊公費在這邊花光</i>  
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">19:30 - 20:30</div>
                 <div class="title">通天閣 (新世界)</div>
-                <div class="note">體驗巨型溜滑梯、摩天輪。必吃：達摩串炸、土手燒(味噌牛筋)</div>
+                <div class="detail">體驗巨型溜滑梯、摩天輪。必吃：達摩串炸、土手燒(味噌牛筋)</div>
+                 <div class="note">
+                     <i class="fa-solid fa-ticket"></i>(約 11–15 分鐘)CACOO卡¥190
+                     <i class="fa-solid fa-train-subway"></i>搭乘地鐵走到日本橋（大阪）(堺筋線普通天下茶屋)惠美須町(下車)走5分
+                 </div>
             </div>
-            <div class="timeline-item">
-                <div class="time">19:00</div>
-                <div class="title">超商或超市採買</div>
-                <div class="note">推薦 LIFE中央廣場 難波店，買熟食回民宿當晚餐</div>
+             <div class="timeline-item">
+                <div class="time">21:00</div>
+                <div class="title">回民宿</div>
+                <div class="detail">早點休息/整理好行李</div>
+                 <div class="note">
+                    路過711可以買隔日早餐
+                 </div>
             </div>
+
+           
         </div>
 
         <div id="day5" class="timeline day-content" style="display:none;">
@@ -511,12 +623,27 @@
             <div class="timeline-item">
                 <div class="time">09:00</div>
                 <div class="title">前往關西機場</div>
-                <div class="detail"><i class="fa-solid fa-train"></i> 搭乘南海電鐵返回機場</div>
+                <div class="detail">
+                    <i class="fa-solid fa-train"></i> 搭乘南海電鐵<br>
+                    <ul>
+                        <li> 特急Rapi:t α  <i class="fa-regular fa-clock"></i>難波:9:00  機場9:38</li>
+                        <li> 空港急行 <i class="fa-regular fa-clock"></i>難波:9:15  機場10:00</li>
+                        <li> 特急Rapi:t α <i class="fa-regular fa-clock"></i>難波:9:30  機場10:08</li>
+                    </ul>
+                    
+                </div>
             </div>
             <div class="timeline-item">
-                <div class="time">10:30</div>
+                <div class="time">10:00~10:30</div>
                 <div class="title">機場報到與掛行李</div>
                 <div class="note">預留時間逛免稅店買伴手禮</div>
+                 <div class="detail">
+                       <ul>
+                           <li>【辦公室分食/大量發送】預算有限但要「有特色不寒酸」➜<i class="fa-solid fa-gift"></i>大阪章魚燒派餅<i class="fa-solid fa-gift"></i>花福堂草莓夾心$376<i class="fa-solid fa-gift"></i>呼吸巧克力 (提拉米蘇 北新地籃包裝)</li>
+                           <li>【送主管/重要長輩】需要「名牌光環」且「質感炸裂」➜<i class="fa-solid fa-gift"></i>Muka Shin KUBOMI：關西機場限定 酥餅禮盒  $500 <i class="fa-solid fa-gift"></i>Bâton d'or (貴婦Pocky)</li>
+                           <li></li>
+                       </ul>
+                 </div>
             </div>
             <div class="timeline-item">
                 <div class="time">12:45</div>
@@ -544,9 +671,10 @@
 
         <div class="card">
             <h2><i class="fa-solid fa-bed"></i> 住宿資訊</h2>
-            <h3>BON公寓難波日本橋</h3>
+            <h3>BON Condo 難波日本橋（Bon Condo Namba Nipponbashi）</h3>
             <ul>
-                <li>地址：1-8-17, Nipponbashi, Chuo-ku, Namba, Osaka</li>
+                <li>1-8-17, Nipponbashi, Chuo-ku, Namba, Osaka, Japan, 5420073<br>大阪府大阪中央区日本橋1-8-17</li>
+                <li>電話:+81 50-1808-3496</li>
                 <li>交通：日本橋站 6 號出口步行 3-5 分鐘</li>
                 <li>優點：空間寬敞(可開多個大行李箱)、微波爐大冰箱洗衣機齊全、衛浴分離。</li>
                 <li>環境：巷口對面就是黑門市場，離道頓堀/心齋橋步行10分內。</li>
@@ -573,7 +701,7 @@
             <p>為了確保通關順利，請家人們在整理行李時務必遵守以下規定：</p>
                         <div class="highlight-box">
                 <strong>🚫 絕對不可放入【托運行李】（必須帶上飛機）：</strong><br>
-                行動電源、備用鋰電池、打火機（限一個）、電子菸。
+                行動電源(10000mh)。
             </div>
             <h3>🎒 隨身包包（帶上飛機）規定</h3>
             <ul>
@@ -599,6 +727,48 @@
         </div>
     </section>
 
+    <section id="tab-currency" class="section-content">
+        <div class="card">
+            <h2><i class="fa-solid fa-coins"></i> 日幣換算器</h2>
+            
+            
+
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+
+            <div class="converter-group">
+                <label>日圓 (JPY)</label>
+                <div class="converter-input-wrapper">
+                    <input type="number" id="jpy-amount" placeholder="輸入日幣" oninput="calcFromJpy()">
+                    <span class="converter-unit">¥</span>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 10px 0; color: var(--primary-color);">
+                <i class="fa-solid fa-arrow-up-down"></i>
+            </div>
+
+            <div class="converter-group">
+                <label>台幣 (TWD)</label>
+                <div class="converter-input-wrapper">
+                    <input type="number" id="twd-amount" placeholder="輸入台幣" oninput="calcFromTwd()">
+                    <span class="converter-unit">$</span>
+                </div>
+            </div>
+
+             <div class="converter-group">
+                <label>設定匯率 (1 JPY = ? TWD)</label>
+                <div class="converter-input-wrapper">
+                    <input type="number" id="ex-rate" value="0.20" step="0.001" oninput="calcFromJpy()">
+                    <span class="converter-unit">匯率</span>
+                </div>
+            </div>
+
+            <p class="note" style="margin-top: 20px;">
+                💡 提示：你可以手動修改匯率。此計算結果僅供參考，實際請以銀行匯率為準。
+            </p>
+        </div>
+    </section>
+
     <nav class="bottom-nav">
         <a class="nav-item active" onclick="switchMainTab('tab-schedule', this)">
             <i class="fa-regular fa-calendar-days"></i>
@@ -611,6 +781,10 @@
         <a class="nav-item" onclick="switchMainTab('tab-prep', this)">
             <i class="fa-solid fa-suitcase"></i>
             <span>行前準備</span>
+        </a>
+        <a class="nav-item" onclick="switchMainTab('tab-currency', this)">
+            <i class="fa-solid fa-coins"></i>
+            <span>日幣換算</span>
         </a>
     </nav>
 
@@ -636,37 +810,53 @@
 
         // 每日行程的 Day 1 ~ Day 5 切換
         function switchDay(dayId) {
-            // 隱藏所有 day-content
             document.querySelectorAll('.day-content').forEach(el => {
                 el.style.display = 'none';
             });
-            // 顯示目標 day-content
             document.getElementById(dayId).style.display = 'block';
             
-            // 更新按鈕 active 狀態
             document.querySelectorAll('.day-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
         }
 
-        // 底部三大主導覽列切換
+        // 底部四大主導覽列切換
         function switchMainTab(tabId, element) {
-            // 隱藏所有主區塊
             document.querySelectorAll('.section-content').forEach(el => {
                 el.classList.remove('active');
             });
-            // 顯示目標區塊
             document.getElementById(tabId).classList.add('active');
             
-            // 更新底部導覽列 active 狀態
             document.querySelectorAll('.nav-item').forEach(nav => {
                 nav.classList.remove('active');
             });
             element.classList.add('active');
             
-            // 回到頂部
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 貨幣換算邏輯
+        function calcFromJpy() {
+            const rate = document.getElementById('ex-rate').value;
+            const jpy = document.getElementById('jpy-amount').value;
+            const twdInput = document.getElementById('twd-amount');
+            if (jpy && rate) {
+                twdInput.value = Math.round(jpy * rate);
+            } else {
+                twdInput.value = '';
+            }
+        }
+
+        function calcFromTwd() {
+            const rate = document.getElementById('ex-rate').value;
+            const twd = document.getElementById('twd-amount').value;
+            const jpyInput = document.getElementById('jpy-amount');
+            if (twd && rate && rate != 0) {
+                jpyInput.value = Math.round(twd / rate);
+            } else {
+                jpyInput.value = '';
+            }
         }
     </script>
 </body>
