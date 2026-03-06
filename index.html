@@ -6,6 +6,10 @@
     <title>2026 大阪家族旅行 🌸</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- fontawesome icon -->
+    <link href="assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="assets/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="assets/fontawesome/css/all.css" rel="stylesheet" />
     <style>
         :root {
             --primary-color: #ff9a9e; /* 櫻花粉 */
@@ -167,11 +171,9 @@
             margin-bottom: 8px;
         }
 
-        .title i{
+        .title i {
             margin: 4px 4px 0 0 ;
         }
-
-
 
         .detail {
             font-size: 14px;
@@ -195,6 +197,16 @@
             color: #d63384;
             margin-top: 10px;
             border-left: 3px solid var(--primary-color);
+        }
+
+        .url {
+            color: #d63384;
+            padding: 10px;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        .url i {
+            font-size: 11px;
         }
 
         /* 卡片設計 (航班、住宿、須知) */
@@ -367,15 +379,16 @@
                 <div class="detail"><i class="fa-solid fa-train"></i> 交通：搭乘南海電鐵「特急 Rapi:t」或「機場急行」</div>
                 <div class="note">
                     <ul>
-                        <li> 1. 購買 ICOCA 卡</li>
-                        <li>  2. 兌換神戶用 JR PASS</li>
+                        <li> 1. 購買 ICOCA 卡<br /><img style="width: 100px;" src="images/icoca.png"></li>
+                        <li> 2. 兌換神戶用 JR PASS</li>
                         <li> 3. 抵達「南海難波站」後，請跟隨指標往 「北出口 (North Exit)」 方向。利用電梯下到 1 樓，出站後往 「難波地下街 (Namba Walk)」 走。沿著地下街往「日本橋站」方向前行（這段地下街全平路，拖行李很方便）。最重要： 尋找 「B15 出口」或「E9 出口」。B15 出口 有電梯可以直達地面。E9 出口 則非常靠近民宿（大約走 2 分鐘）</li>
                     </ul>
                </div>
             </div>
             <div class="timeline-item">
                 <div class="time">16:00</div>
-                <div class="title">住宿 Check-in (BON 公寓)</div>
+                <div class="title">住宿 Check-in (<a href="https://www.agoda.com/zh-tw/bon-condo-namba-nipponbashi/hotel/osaka-jp.html?site_id=1922876&tag=a39372b0-ed98-4bdd-9452-fa4fe60fbcb7&gad_source=1&gad_campaignid=22020142280&gbraid=0AAAAA9_WXQomX2TQHMa9T_5Wql3zo8TWV&gclid=Cj0KCQiA8KTNBhD_ARIsAOvp6DIvnQ263unbN_ajGKSNzFSgjD_y0F6lpGH1d6dR77RYUFo_MzS37DUaAl5jEALw_wcB&ds=KpZmYd2F2QCbiGk2" target="_blank">BON 公寓</a>)</div>
+                <div><img style="width: 200px;" src="images/bon.png"></div>
                 <div class="detail">整理行李、洗把臉準備出發。</div>
                 <div class="note">
                     1.入住前:大門進入密碼： 用來打開公寓 1 樓大門。入住碼 (Check-in Code)： 這是一串數字，不是 Agoda 的訂單編號。
@@ -394,25 +407,26 @@
                 <div class="title">晚餐時間 (3選1)</div>
                 <div class="detail">
                     <ul>
-                        <li>北極星蛋包飯</li>
-                         <li><a href="https://share.google/SahSSklICYsjfNudj" target="_blink">拉麵 Hayashida (らぁ麺 はやし田 道頓堀店)</a></li>
-                        <li>神座拉麵 (Kamukura Ramen) — 清爽系白菜湯頭</li>
-                    </ul>
-                   
+                        <li><a href="https://bobbyfun.tw/2023-04-05-2292" target="_blank">北極星蛋包飯</a></li>
+                        <li><a href="https://share.google/SahSSklICYsjfNudj" target="_blank">拉麵 Hayashida (らぁ麺 はやし田 道頓堀店)</a></li>
+                        <li><a href="https://bobbyfun.tw/2023-04-05-2296" target="_blank">神座拉麵 (Kamukura Ramen) — 清爽系白菜湯頭</a></li>
+                    </ul>                   
                 </div>
                 <div class="note">
-                    <h4>北極星蛋包飯:</h4>
-                    <h4>拉麵 Hayashida (らぁ麺 はやし田 道頓堀店):</h4>這間店就在道頓堀最熱鬧的區域（靠近格力高廣告牌），位於地下一樓。雖然它是東京來的名店，但其「高質感」的路線非常符合不喜歡死鹹口味的觀光客。<br>
-                    必點推薦：雖然最有名的是醬油拉麵，但他們的雞肉基底湯頭非常細緻，使用全雞與鴨肉熬煮，油脂清香而不膩。
-                    <h4>神座拉麵:</h4>這家拉麵被譽為「關西第一名」，湯頭與一般濃郁的豚骨不同，主打清甜的蔬菜醬油基底。<br>
-                    必點推薦：叉燒溏心蛋拉麵： 湯頭加入大量大白菜，口感像蔬菜湯一樣甘甜好喝，非常適合不喜歡太重鹹的旅人<br>
+                    <h4>北極星蛋包飯：</h4>傳言是日本蛋包飯創始店，百年歷史名氣響亮，<br>店家生意極好，無時無刻都高朋滿座。<br><br>
+                    <h4>拉麵 Hayashida (らぁ麺 はやし田 道頓堀店)：</h4>這間店就在道頓堀最熱鬧的區域（靠近格力高廣告牌），位於地下一樓。雖然它是東京來的名店，但其「高質感」的路線非常符合不喜歡死鹹口味的觀光客。<br>
+                    必點推薦：雖然最有名的是醬油拉麵，但他們的雞肉基底湯頭非常細緻，使用全雞與鴨肉熬煮，油脂清香而不膩。<br><br>
+                    <h4>神座拉麵：</h4>這家拉麵被譽為「關西第一名」，湯頭與一般濃郁的豚骨不同，主打清甜的蔬菜醬油基底。<br>
+                    必點推薦：叉燒溏心蛋拉麵：湯頭加入大量大白菜，口感像蔬菜湯一樣甘甜好喝，非常適合不喜歡太重鹹的旅人<br>
                 </div>
             </div>
               <div class="timeline-item">
                 <div class="time">18:50</div>
-                <div class="title">Le Croissant Shinsaibashi心齋橋小可頌</div>
-                <div class="detail"><i class="fa-solid fa-bread-slice"></i> Le Croissant Shinsaibashi, 2 Chome-7-25 Shinsaibashisuji, Chuo Ward, Osaka, 542-0085日本   </div>
-                <div class="note">20:30關門  好吃的可頌可當明日早餐</div>
+                <div class="title">Le Croissant Shinsaibashi 心齋橋小可頌</div>
+                <div><img style="width: 200px;" src="images/bread_store.png"></div>
+                <div class="detail"><i class="fa-solid fa-bread-slice"></i> Le Croissant Shinsaibashi, 2 Chome-7-25 Shinsaibashisuji, Chuo Ward, Osaka, 542-0085日本</div>
+                <div><a class="url" href="https://www.threads.com/@shain.food/post/DPT7FyWEhrY/%E5%BF%83%E9%BD%8B%E6%A9%8B%E6%97%81%E9%82%8A%E8%B6%85%E5%8F%AF%E6%84%9B%E7%9A%84%E5%8F%AF%E9%A0%8C%E5%BA%97%E5%8F%A3%E5%91%B3%E8%B6%85%E5%A4%9A%E7%A8%AE%E5%8E%9F%E6%9C%AC%E8%A6%BA%E5%BE%97%E7%94%9C%E7%9A%84%E5%B0%B1%E5%BE%88%E5%A5%BD%E5%90%83%E4%BA%86%E7%B5%90%E6%9E%9C%E9%B9%B9%E7%9A%84%E6%9B%B4%E9%A9%9A%E8%B1%94%E5%BE%88%E5%8F%AF%E4%BB%A5%E8%B2%B7%E5%9B%9E%E5%8E%BB%E7%95%B6%E9%9A%94%E5%A4%A9%E6%97%A9%E9%A4%90?hl=zh-tw" target="_blank"><i class="fas fa-link"></i> 網友分享</a></div>
+                <div class="note">20:30關門，Youtuber力薦的好吃可頌，可當隔日早餐</div>
             </div>
            <div class="timeline-item">
                 <div class="time">19:00</div>
